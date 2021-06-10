@@ -15,19 +15,6 @@
 
 $(document).ready(function() {
     'use strict';
-
-    // Moderator check
-    if(unsafeWindow.StackExchange.moderator === undefined) return;
-  
-  	$('#left-sidebar > div > nav > .nav-links > li > a:contains("Admin settings")').parent().after(`<li class="">
-            <a href="/c/the-friendly-cafe/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
-                    <div class="grid ai-center">
-                        <div class="grid--cell truncate">
-                            Moderator tools
-                        </div>
-                    </div>
-            </a>
-        </li>`);
             
     // Add the flag button
     (function() {
@@ -44,6 +31,19 @@ $(document).ready(function() {
                         </button>
                     </div>`);
     })();
+
+    // Moderator check
+    if(unsafeWindow.StackExchange.moderator === undefined) return;
+  
+  	$('#left-sidebar > div > nav > .nav-links > li > a:contains("Admin settings")').parent().after(`<li class="">
+            <a href="/c/the-friendly-cafe/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
+                    <div class="grid ai-center">
+                        <div class="grid--cell truncate">
+                            Moderator tools
+                        </div>
+                    </div>
+            </a>
+        </li>`);
 
 
     const superusers = [ 584192, 366904, 6451573 ];
