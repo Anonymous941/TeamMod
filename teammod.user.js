@@ -15,6 +15,8 @@
 
 $(document).ready(function() {
     'use strict';
+
+    var StackExchange = unsafeWindow.StackExchange;
             
     // Add the flag button
     (function() {
@@ -33,10 +35,10 @@ $(document).ready(function() {
     })();
 
     // Moderator check
-    if(unsafeWindow.StackExchange.moderator === undefined) return;
+    if(StackExchange.moderator === undefined) return;
   
   	$('#left-sidebar > div > nav > .nav-links > li > a:contains("Admin settings")').parent().after(`<li class="">
-            <a href="${unsafeWindow.StackExchange.options.site.routePrefix}/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
+            <a href="${StackExchange.options.site.routePrefix}/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
                     <div class="grid ai-center">
                         <div class="grid--cell truncate">
                             Moderator tools
@@ -57,7 +59,6 @@ $(document).ready(function() {
 
 
     const superusers = [ 584192, 366904, 6451573 ];
-    var StackExchange = unsafeWindow.StackExchange;
     const isSuperuser = superusers.includes(StackExchange.options.user.userId);
 
     const newlines = '\n\n';
