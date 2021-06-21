@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      0.0.1
+// @version      0.0.2
 //
 // @include      https://stackoverflow.com/c/*
 //
@@ -802,7 +802,7 @@ $(document).ready(function() {
         });
 
         // Append link to post sidebar if it doesn't exist yet
-        $('.question, .answer').find('.js-voting-container').not('.js-post-mod-menu').addClass('js-post-mod-menu').each(function() {
+        $('.question, .answer').find('.votecell > .js-voting-container').not('.js-post-mod-menu').addClass('js-post-mod-menu').each(function() {
             const post = $(this).closest('.question, .answer');
             const postScore = Number($(this).find('.js-vote-count').text());
             const postStatus = post.find('.js-post-notice, .special-status, .question-status').text().toLowerCase();
