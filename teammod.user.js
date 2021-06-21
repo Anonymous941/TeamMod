@@ -36,7 +36,7 @@ $(document).ready(function() {
     if(unsafeWindow.StackExchange.moderator === undefined) return;
   
   	$('#left-sidebar > div > nav > .nav-links > li > a:contains("Admin settings")').parent().after(`<li class="">
-            <a href=StackExchange.options.site.routePrefix + "/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
+            <a href="${StackExchange.options.site.routePrefix}/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
                     <div class="grid ai-center">
                         <div class="grid--cell truncate">
                             Moderator tools
