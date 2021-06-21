@@ -44,6 +44,16 @@ $(document).ready(function() {
                     </div>
             </a>
         </li>`);
+    
+    jQuery.get("https://stackoverflow.com/c/the-friendly-cafe/admin/dashboard", function(response) {
+      var elements = $('<div id="moderatorTools">').html(response);
+        var currentModeratorAlerts = Number(elements.find("[title=\"summary of current moderator alerts\"]:first > .s-badge").text());
+        if(currentModeratorAlerts) {
+            $('#left-sidebar > div > nav > .nav-links > li > a:contains("Moderator tools") > .grid > .grid--cell:first').after(`<div class="grid--cell px4 ml-auto">
+                                    <span class="s-badge s-badge__sm bg-blue-600 fc-white bc-transparent" title="Summary of current moderator alerts">${currentModeratorAlerts}</span>
+                                </div>`);
+      }
+    });
 
 
     const superusers = [ 584192, 366904, 6451573 ];
