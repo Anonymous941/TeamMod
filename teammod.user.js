@@ -36,6 +36,8 @@ $(document).ready(function() {
 
     // Moderator check
     if(StackExchange.moderator === undefined) return;
+
+    $(".js-profile-mod-info").removeClass("d-none"); // Show moderation info on users
   
   	$('#left-sidebar > div > nav > .nav-links > li > a:contains("Admin settings")').parent().after(`<li class="">
             <a href="${StackExchange.options.site.routePrefix}/admin/links" class="pl8 js-gps-track nav-links--link" aria-controls="" data-controller="" data-s-popover-placement="right" id="moderator-tools-link">
