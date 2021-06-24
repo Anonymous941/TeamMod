@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      0.0.2
+// @version      0.0.3
 //
 // @include      https://stackoverflow.com/c/*
 //
@@ -15,6 +15,7 @@
 
 $(document).ready(function() {
     'use strict';
+    var teamName = /^\/c\/([a-z0-9\-]+)(?:\/.*?)?$/.exec(window.location.pathname)[1];
 
     var StackExchange = unsafeWindow.StackExchange;
             
@@ -36,6 +37,15 @@ $(document).ready(function() {
 
     // Moderator check
     if(StackExchange.moderator === undefined) return;
+    
+    $($("a").filter(function() {
+		if($(this).attr("href") == "/annotated-posts" || /(?<=^\/admin\/)(.+)(?=$)/.test($(this).attr("href"))) {
+		return this;
+	  }
+	})).each(function(index, link) {
+		$(link).attr("href", `/c/${teamName}${$(link).attr("href")}`);
+	});
+	window.location.href;
 
     $(".js-profile-mod-info").removeClass("d-none"); // Show moderation info on users
   
