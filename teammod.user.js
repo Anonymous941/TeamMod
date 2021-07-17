@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      1.0.0-alpha
+// @version      1.0.1-alpha
 // @run-at document-end
 //
 // @include      https://stackoverflow.com/c/*
@@ -59,13 +59,13 @@ $(document).ready(function() {
   }
 
   if(userID) { // Are we on a user profile page?
-    $('.js-user-header > .grid--cell:contains("Network profile")').after(`<div class="grid--cell ml12 ai-center">
+    $('.js-user-header > :contains("Network profile")').after(`<div class="grid--cell ml12 ai-center">
   <a class="grid--cell ws-nowrap js-mod-menu-button" href="#" role="button" data-controller="se-mod-button" data-se-mod-button-type="user" data-se-mod-button-id="${userID}">Mod</a>
 </div>`); // If so, add the user moderator actions button
   }
 
-  $(".js-post-menu > .grid").each(function(index, element) { // Add post moderation actions dialog
-    $(element).append(`<div class="grid--cell">
+  $(".js-post-menu > .gs8").each(function(index, element) { // Add post moderation actions dialog
+    $(element).prepend(`<div class="grid--cell">
   <button type="button" class="js-mod-menu-button s-btn s-btn__link js-gps-track" data-gps-track="post.click({ item: 11, priv: 17, post_type: 1 })" data-controller="se-mod-button" data-se-mod-button-type="post" data-se-mod-button-id="${$(element).parent().attr("data-post-id")}">Mod</button>
 </div>`);
   });
