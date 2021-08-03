@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      1.0.1-alpha
+// @version      1.1.0-alpha
 // @run-at document-end
 //
 // @include      https://stackoverflow.com/c/*
@@ -53,15 +53,42 @@ $(document).ready(function() {
   // At this point, you need to be an admin to use any of the other features
   if(StackExchange.moderator === undefined) return; // If you're not, end the script here
 
-  var userID = /^\/c\/[a-z\d\-]+\/users\/(\d+)\/?(?:\?.*)?$/.exec(window.location.pathname); // If the current page is a user profile page, get the ID
+  var userID = /^\/c\/[a-z\d\-]+\/users\/(?:edit\/)?((?:\d|\-)+)\/?(?:\?.*)?$/.exec(window.location.pathname); // If the current page is a user profile page, get the ID
   if(userID) {
     userID = userID[1];
   }
 
   if(userID) { // Are we on a user profile page?
-    $('.js-user-header > :contains("Network profile")').after(`<div class="grid--cell ml12 ai-center">
-  <a class="grid--cell ws-nowrap js-mod-menu-button" href="#" role="button" data-controller="se-mod-button" data-se-mod-button-type="user" data-se-mod-button-id="${userID}">Mod</a>
+    $('.js-user-header').each(function(index, header) {
+      function getClasses() {
+        return "";
+      }
+      var channelClass = $(".top-bar").attr("class").split(/\s+/).find(className => /channel(\d+)/.test(className)); // get the channel's class for the team-specific color
+      $(header).html(`<div class="flex--item s-navigation">
+
+<a href="/c/${teamName}/users/${userID}/?tab=profile" class="s-navigation--item${$(`.js-user-header > .flex--item > [href="/c/${teamName}/users/${userID}/?tab=profile"]`).hasClass("is-selected") ? ` is-selected ${channelClass} themed-bg`: ""}" data-shortcut="P">Profile</a>
+<a href="/c/${teamName}/users/${userID}/?tab=topactivity" class="s-navigation--item${$(`.js-user-header > .flex--item > [href="/c/${teamName}/users/${userID}/?tab=topactivity"]`).hasClass("is-selected") ? ` is-selected ${channelClass} themed-bg`: ""}" data-shortcut="A">Activity</a>
+<a href="/c/${teamName}/users/account-info/${userID}"
+class="s-navigation--item${(window.location.pathname == `/c/${teamName}/users/account-info/${userID}` || window.location.pathname == `/c/${teamName}/users/account-info/${userID}/`) ? ` is-selected ${channelClass} themed-bg`: ""}"
+data-shortcut="M">Mod dashboard</a>
+<a href="/c/${teamName}/users/edit/${userID}" class="s-navigation--item${(window.location.pathname == `/c/${teamName}/users/edit/${userID}` || window.location.pathname == `/c/${teamName}/users/edit/${userID}/`) ? ` is-selected ${channelClass} themed-bg`: ""}" data-shortcut="E">Edit profile and settings</a>
+</div>
+<div class="flex--item ml-auto">
+<div class="d-flex ai-center gs12 gsx">
+<a href="#" class="flex--item ws-nowrap account-toggle">Account info</a>
+<a class="flex--item ws-nowrap js-mod-menu-button" href="#" role="button" data-controller="se-mod-button" data-se-mod-button-type="user" data-se-mod-button-id="${userID}">Mod</a>
+<a href="${$(header).children().filter(":contains(\"Network profile\")").children().children().filter("a").attr("href")}" class="flex--item ws-nowrap">
+<svg aria-hidden="true" class="native svg-icon iconLogoSEXxs" width="18" height="18" viewBox="0 0 18 18"><path d="M3 4c0-1.1.9-2 2-2h8a2 2 0 012 2H3z" fill="#8FD8F7"/><path d="M15 11H3c0 1.1.9 2 2 2h5v3l3-3a2 2 0 002-2z" fill="#155397"/><path fill="#46A2D9" d="M3 5h12v2H3z"/><path fill="#2D6DB5" d="M3 8h12v2H3z"/></svg>
+Network profile
+</a>
+${$(".mod-tabs").parent().html()}
 </div>`); // If so, add the user moderator actions button
+      $(`.js-user-header > .flex--item > [href="/c/${teamName}/users/account-info/${userID}"], .account-toggle`).on("click", function() { // Stack Exchange 404'ed this page (makes sense, with all the PII).  Sorry.
+        alert("This is not available in private teams.");
+        return false;
+      });
+    });
+
   }
 
   $(".js-post-menu > .gs8").each(function(index, element) { // Add post moderation actions dialog
