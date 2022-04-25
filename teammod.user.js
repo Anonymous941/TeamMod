@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      1.1.1-alpha
+// @version      1.1.2-alpha
 // @run-at document-end
 //
 // @include      https://stackoverflow.com/c/*
@@ -111,7 +111,7 @@ ${$(".mod-tabs").parent().html()}
     </a>
 </li>`);
 
-  jQuery.get("https://stackoverflow.com/c/the-friendly-cafe/admin/dashboard", function(response) {
+  jQuery.get(`https://stackoverflow.com/c/${teamName}/admin/dashboard`, function(response) {
     var elements = $('<div id="moderatorTools">').html(response);
       var currentModeratorAlerts = Number(elements.find("[title=\"summary of current moderator alerts\"]:first > .s-badge").text());
       if(currentModeratorAlerts) {
