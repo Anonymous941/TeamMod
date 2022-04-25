@@ -2,7 +2,7 @@
 // @name         TeamMod
 // @description  Enables moderation tools in private teams.
 // @author       @Ano
-// @version      1.1.0-alpha
+// @version      1.1.1-alpha
 // @run-at document-end
 //
 // @include      https://stackoverflow.com/c/*
