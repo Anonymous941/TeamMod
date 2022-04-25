@@ -30,7 +30,7 @@ $(document).ready(function() {
   (function() {
       'use strict';
 
-      $(`<div class="grid--cell">
+      $(`<div class="flex--item">
     <button type="button" class="js-flag-post-link s-btn s-btn__link js-gps-track" data-gps-track="post.click({ item: 5, priv: 27, post_type: 1 })" title="Flag this post for serious problems or moderator attention">
         Flag
     </button>
@@ -92,7 +92,7 @@ ${$(".mod-tabs").parent().html()}
   }
 
   $(".js-post-menu > .gs8").each(function(index, element) { // Add post moderation actions dialog
-    $(element).prepend(`<div class="grid--cell">
+    $(element).prepend(`<div class="flex--item">
   <button type="button" class="js-mod-menu-button s-btn s-btn__link js-gps-track" data-gps-track="post.click({ item: 11, priv: 17, post_type: 1 })" data-controller="se-mod-button" data-se-mod-button-type="post" data-se-mod-button-id="${$(element).parent().attr("data-post-id")}">Mod</button>
 </div>`);
   });
