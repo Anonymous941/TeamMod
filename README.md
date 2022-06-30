@@ -1,3 +1,3 @@
-# TeamMod
+# This repository has been removed as part of my GitLab migration
 
-Enables moderation tools in private teams.  See the [Stack Apps post](https://stackapps.com/q/8949/79306) for more info, to leave feedback, comments, suggestions, bug reports or to upvote if you like it!
+[Learn more](https://github.com/Anonymous941/Gitlab-Migration)
